@@ -1,0 +1,53 @@
+.Buttons {
+    background-color: rgb(66, 65, 65);
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    /* border-radius: 200px; */
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    padding: 20px;
+    font-size: 20px;
+}
+
+#screen {
+    grid-row: 1;
+    background-color: rgb(86, 170, 86);
+    grid-column: span 4;
+    height: 70px;
+    text-align: right;
+}
+
+#add,
+#sub,
+#mul,
+#div {
+    background-color: rgb(172, 173, 178);
+}
+
+#b0 {
+    grid-column: span 2;
+}
+
+#ce {
+    background-color: rgb(167, 174, 201);
+}
+
+#c {
+    background-color: rgb(100, 111, 152);
+}
+
+#eq {
+    background-color: rgb(245, 135, 51);
+    grid-row: span 2;
+}
+
