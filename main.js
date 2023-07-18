@@ -94,10 +94,14 @@ buttons.forEach(button => {
             operators = [];
             answerElement.textContent = digits.join("");
             break;
-            
+        case "dec":
+            // adds decimal
+            digits.push(".");
+            answerElement.textContent = digits.join("");
+            break;    
 
         case "eq":
-            const combinedNumber5 = parseInt(digits.join(''));
+            const combinedNumber5 = parseFloat(digits.join(''));
             numbers.push(combinedNumber5);
             digits = [];
             console.log("perform operations");
