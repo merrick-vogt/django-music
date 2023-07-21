@@ -9,37 +9,70 @@
     <title>Calculator</title>
 </head>
 <body>
-    <h1>Calculator</h1>
 
-    <div class="Buttons">
-        <button id="screen">answer</button>
-
-        <button id="add">+</button>
-        <button id="sub">-</button>
-        <button id="mul">*</button>
-        <button id="div">/</button> 
-
-        <button id="b9">9</button>
-        <button id="b8">8</button>
-        <button id="b7">7</button>
-
-        <button id="ce">CE</button>
-
-        <button id="b4">4</button>
-        <button id="b5">5</button>
-        <button id="b6">6</button>
-
-        <button id="c">C</button>
-
-        <button id="b1">1</button>
-        <button id="b2">2</button>
-        <button id="b3">3</button>
-        <button id="eq">=</button>
-
-        <button id="b0">0</button>
-        <button id="dec">.</button>
+    <!-- Home Screen -->
+    <div id="homeScreen">
+        <h1>SassyApp Central!</h1>
+        <h2><em>Where Sassiness Meets Functionality</em></h2>
+        <div class = "AppButtons">
+            <button id="calculatorButton">Calculator</button>
+            <button id="todoButton">To-Do List</button>
+        </div>
     </div>
+
+    <!-- Return Button -->
+    <button id="returnButton" class="hidden">Back to Sass Central</button>
+
+    <!-- Calculator -->
+    <div id="calculator" class="hidden">
+        <h1>Sassy Calculator</h1>
+
+        <div class="Buttons">
+            <button id="screen">Math but with <em>*flair*</em></button>
+
+            <button id="add">+</button>
+            <button id="sub">-</button>
+            <button id="mul">*</button>
+            <button id="div">/</button> 
+
+            <button id="b9">9</button>
+            <button id="b8">8</button>
+            <button id="b7">7</button>
+
+            <button id="ce">CE</button>
+
+            <button id="b4">4</button>
+            <button id="b5">5</button>
+            <button id="b6">6</button>
+
+            <button id="c">C</button>
+
+            <button id="b1">1</button>
+            <button id="b2">2</button>
+            <button id="b3">3</button>
+            <button id="eq">=</button>
+
+            <button id="b0">0</button>
+            <button id="b.">.</button>
+        </div>
+    </div>
+
+    <!-- To-Do List -->
     
+    <div id="todoList" class="hidden">
+        <h2>Sassy To-Do List</h2>
+        
+        <p id="inspiration">Go on. Add something...</p>
+
+        <input id="userinput" type="text" placeholder="enter items">
+        <button id="enter">Enter</button>
+        <ul>
+            <li>Brush Teeth</li>
+            <li>Get Groceries</li>
+            <li>Do Laundry</li>
+        </ul>
+
+    </div>
 
     <script src="main.js" defer></script>
 </body>

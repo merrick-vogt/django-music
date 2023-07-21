@@ -1,3 +1,68 @@
+/* Formatting that applies to everything */
+body {
+    background-color: pink;
+}
+
+/* Display and hide Apps using DOM manipulation */
+.hidden {
+    display: none;
+}
+
+/* Formatting Homepage */
+h1,
+h2 {
+    text-align: center;
+}
+
+.AppButtons {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+
+}
+
+.AppButtons button {
+    padding: 30px;
+    font-size: 30px;
+    margin: 10px;
+    background-color: lightblue;
+}
+
+/* Formatting that applies to all Apps internally */
+#returnButton {
+    background-color: hotpink;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+ 
+@keyframes funAnimation {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0); }
+}
+
+#returnButton:hover {
+    background-color: deeppink;
+    animation: funAnimation 0.5s linear infinite;
+}
+  
+
+#returnButton:active {
+    transform: translateY(5px);
+}
+  
+
+/* Formatting Calculator */
 .Buttons {
     background-color: rgb(66, 65, 65);
     display: grid;
@@ -7,14 +72,9 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 10px;
-    /* border-radius: 200px; */
 }
 
-h1 {
-    text-align: center;
-}
-
-button {
+.Buttons button {
     padding: 20px;
     font-size: 20px;
 }
@@ -23,10 +83,19 @@ button {
     grid-row: 1;
     background-color: rgb(86, 170, 86);
     grid-column: span 4;
-    height: 70px;
-    text-align: right;
+    height: 100px;
+    text-align: center;
 }
 
+#answer {
+    font-weight: bold;
+    font-size: 25px;
+    color: purple;
+    
+}
+/* Answer Styling */
+
+  
 #add,
 #sub,
 #mul,
@@ -50,4 +119,56 @@ button {
     background-color: rgb(245, 135, 51);
     grid-row: span 2;
 }
+
+/* Formatting To-Do List */
+ #todoList {
+    margin: 20px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; */
+  }
+ 
+#inspiration {
+color: black;
+font-style: italic;
+font-size: 20px;
+}
+
+input[type="text"] {
+padding: 10px;
+width: 300px;
+margin: 10px;
+border-radius: 5px;
+border: none;
+}
+
+button#enter {
+padding: 10px 20px;
+margin-top: 5px;
+background-color: hotpink;
+color: white;
+border: none;
+border-radius: 5px;
+font-weight: bold;
+cursor: pointer;
+}
+
+ul {
+list-style-type: none;
+padding: 0;
+}
+
+ul li {
+background-color: rgba(255, 255, 255, 0.8);
+padding: 10px;
+margin-bottom: 10px;
+border-radius: 5px;
+width: 300px;
+}
+
+ul li:last-child {
+margin-bottom: 0;
+}
+  
 
