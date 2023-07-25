@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylegradient.css">
+    <script src="main.js" defer></script>
+    <script src="calculator.js" defer></script>
+    <script src="todolist.js" defer></script>
+    <script src="gradient.js" defer></script>
 
-    <title>Calculator</title>
+    <title>Sassy Apps</title>
 </head>
 <body>
 
@@ -17,6 +22,7 @@
         <div class = "AppButtons">
             <button id="calculatorButton">Calculator</button>
             <button id="todoButton">To-Do List</button>
+            <button id="gradientButton">Background Gradient Creator</button>
         </div>
     </div>
 
@@ -67,13 +73,21 @@
         <input id="userinput" type="text" placeholder="enter items">
         <button id="enter">Enter</button>
         <ul>
-            <li>Brush Teeth</li>
-            <li>Get Groceries</li>
-            <li>Do Laundry</li>
+            <li class="listItem">Brush Teeth</li>
+            <li class="listItem">Get Groceries</li>
+            <li class="listItem">Do Laundry</li>
         </ul>
 
     </div>
 
-    <script src="main.js" defer></script>
+    <!-- Background Gradient Creator-->
+    <div id="gradient" class="hidden">
+        <h1>Background Generator</h1>
+        <input class ="color1" type="color" name="color1" value="#ff0000">
+        <input class="color2" type="color" name="color2" value="#ffff00">
+        <h2>Current CSS Background</h2>
+        <h3></h3>
+    </div>
+    
 </body>
 </html>
