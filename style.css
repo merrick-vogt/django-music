@@ -1,174 +1,134 @@
-/* Formatting that applies to everything */
+/* Apply a slick-looking background to the entire page */
 body {
-    background-color: pink;
+  background-color: black;
+  font-family: Arial, sans-serif;
+  color: white;
 }
 
-/* Display and hide Apps using DOM manipulation */
-.hidden {
-    display: none;
+.center-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Formatting Homepage */
-h1,
-h2 {
-    text-align: center;
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.AppButtons {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-
+label {
+  font-weight: bold;
 }
 
-.AppButtons button {
-    padding: 30px;
-    font-size: 30px;
-    margin: 10px;
-    background-color: lightblue;
+input[type="range"] {
+  width: 100%;
 }
 
-/* Formatting that applies to all Apps internally */
-#returnButton {
-    background-color: hotpink;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
- 
-@keyframes funAnimation {
-    0% { transform: rotate(0); }
-    25% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-    75% { transform: rotate(-5deg); }
-    100% { transform: rotate(0); }
+/* Styling the audio button */
+#audio {
+  background-color: rgb(185, 9, 185); /* Purple background color */
+  color: white; /* Text color */
+  padding: 12px 1.25rem; /* Add some padding for a better visual */
+  margin: 1.25rem 0rem;
+  font-size: 16px; /* Font size */
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
+  align-content: center;
+  width: 30rem;
 }
 
-#returnButton:hover {
-    background-color: deeppink;
-    animation: funAnimation 0.5s linear infinite;
+#audio:hover {
+  background-color: purple; /* Darken the background color on hover */
 }
+
+#audio:focus {
+  outline: none; /* Remove the default focus outline */
+}
+
+#audio:active {
+  transform: scale(0.95); /* Slightly scale down the button when it's clicked */
+}
+
+/* Add margin and padding to the main container */
+#resultsBox {
+  display: flex;
+  flex-direction: column; /* Change to display items in a column */
+  gap: 1.25rem;
+  margin: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid #ddd;
+  background-color: black; /* Set background color to black */
+  overflow-x: auto;
+}
+
+/* Define the shared style for the results containers */
+.results-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.25rem;
+  overflow-x: auto;
+  height: 15.5rem;
+  border: 2px solid purple; /* Set the border color to purple */
+}
+
+.song-box {
   
-
-#returnButton:active {
-    transform: translateY(5px);
-}
-  
-
-/* Formatting Calculator */
-.Buttons {
-    background-color: rgb(66, 65, 65);
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 10px;
 }
 
-.Buttons button {
-    padding: 20px;
-    font-size: 20px;
+/* Style the image */
+.song-box img {
+  width: 100%;
+  height: 10rem; /* Adjust the image height as needed */
+  width: 10rem;
+  object-fit: cover;
 }
 
-#screen {
-    grid-row: 1;
-    background-color: rgb(86, 170, 86);
-    grid-column: span 4;
-    height: 100px;
-    text-align: center;
+/* Style the song title and band name */
+.song-box .text-content {
+  flex-grow: 1; /* Allow the text to grow and occupy remaining space */
+  padding: .625rem;
+  display: flex;
+  flex-direction: column;
 }
 
-#answer {
-    font-weight: bold;
-    font-size: 25px;
-    color: purple;
-    
-}
-/* Answer Styling */
-
-  
-#add,
-#sub,
-#mul,
-#div {
-    background-color: rgb(172, 173, 178);
+.song-box h3,
+.song-box p {
+  margin: 0;
+  font-size: 1.25rem; /* Increase font size for better visibility */
+  color: white; /* Text color */
 }
 
-#b0 {
-    grid-column: span 2;
+/* Styling the search button */
+#searchButton {
+  background-color: rgb(185, 9, 185); /* Purple background color */
+  color: white; /* Text color */
+  padding: 12px 1.25rem; /* Add some padding for a better visual */
+  font-size: 16px; /* Font size */
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
+  width: 150px; /* Set the width to your desired value */
 }
 
-#ce {
-    background-color: rgb(167, 174, 201);
+#searchButton:hover {
+  background-color: purple; /* Darken the background color on hover */
 }
 
-#c {
-    background-color: rgb(100, 111, 152);
+#searchButton:focus {
+  outline: none; /* Remove the default focus outline */
 }
 
-#eq {
-    background-color: rgb(245, 135, 51);
-    grid-row: span 2;
+#searchButton:active {
+  transform: scale(0.95); /* Slightly scale down the button when it's clicked */
 }
 
-/* Formatting To-Do List */
- #todoList {
-    margin: 20px;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center; */
-  }
- 
-#inspiration {
-color: black;
-font-style: italic;
-font-size: 20px;
+/* Position the search and audio buttons side by side */
+.buttons-wrapper {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  margin-top: 1.25rem;
 }
-
-input[type="text"] {
-padding: 10px;
-width: 300px;
-margin: 10px;
-border-radius: 5px;
-border: none;
-}
-
-button#enter {
-padding: 10px 20px;
-margin-top: 5px;
-background-color: hotpink;
-color: white;
-border: none;
-border-radius: 5px;
-font-weight: bold;
-cursor: pointer;
-}
-
-ul {
-list-style-type: none;
-padding: 0;
-}
-
-ul li {
-background-color: rgba(255, 255, 255, 0.8);
-padding: 10px;
-margin-bottom: 10px;
-border-radius: 5px;
-width: 300px;
-}
-
-ul li:last-child {
-margin-bottom: 0;
-}
-  
-

@@ -1,0 +1,26 @@
+function getArtistIDsFromJson(jsonData) {
+    const tracks = jsonData.results;
+    const artistIDs = tracks.map((track) => track.artistId);
+    return artistIDs;
+  }
+
+function findElementWithHighestCount(array) {
+    const count = {};
+    let maxCount = 0;
+    let elementWithMaxCount = null;
+  
+    for (const element of array) {
+      if (count.hasOwnProperty(element)) {
+        count[element] += 1;
+      } else {
+        count[element] = 1;
+      }
+  
+      if (count[element] > maxCount) {
+        maxCount = count[element];
+        elementWithMaxCount = element;
+      }
+    }
+  
+    return elementWithMaxCount;
+}
