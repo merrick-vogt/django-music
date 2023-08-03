@@ -1,5 +1,8 @@
 /* Apply a background and font to the entire page */
-
+#link {
+  color: white;
+  font-size: 3rem;
+}
 
 body {
   background-color: black;
