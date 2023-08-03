@@ -1,8 +1,21 @@
-/* Apply a slick-looking background to the entire page */
+/* Apply a background and font to the entire page */
+
+
 body {
   background-color: black;
   font-family: Arial, sans-serif;
   color: white;
+}
+
+h1 {
+  font-size: 1.6rem;
+  padding: 0rem;
+  margin-top: 1rem;
+  margin-block-end: 0rem;
+}
+
+.subtitle {
+  margin-block-end: 0rem;
 }
 
 .center-wrapper {
@@ -12,55 +25,114 @@ body {
   align-items: center;
 }
 
+/* Styling for the explanation table */
+table {
+  width: 24rem;
+  border-collapse: collapse; 
+}
+
+td {
+  padding: 10px; 
+  font-size: 16px;
+  color: white; 
+  border: 2px solid rgb(185, 9, 185); 
+  border-radius: 8px; 
+  text-align: center; 
+}
+
+td:hover {
+  background-color: rgb(185, 9, 185); 
+  cursor: pointer; 
+}
+
+.searchBox {
+  margin: .5rem;
+}
+
+/* Style the text content box */
+#searchInput {
+  border: 2px solid rgb(185, 9, 185); 
+  padding: 10px; 
+  font-size: 16px; 
+  border-radius: 8px; 
+  margin-top: 10px; 
+  width: 15rem; 
+}
+
+/* Styling the search button */
+#searchButton {
+  background-color: rgb(185, 9, 185); 
+  color: white; 
+  padding: 12px 1.25rem; 
+  font-size: 16px; 
+  border-radius: 8px; 
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+  width: 10rem; 
+}
+
+#searchButton:hover {
+  background-color: purple;
+}
+
+#searchButton:focus {
+  outline: none; 
+}
+
+#searchButton:active {
+  transform: scale(0.95); 
+}
+
+/* slider container */
 .container {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
 
-label {
-  font-weight: bold;
-}
-
 input[type="range"] {
   width: 100%;
+  background-color:rgb(185, 9, 185)
+}
+
+.container span {
+  font-size: 1.25rem;
 }
 
 /* Styling the audio button */
 #audio {
-  background-color: rgb(185, 9, 185); /* Purple background color */
-  color: white; /* Text color */
-  padding: 12px 1.25rem; /* Add some padding for a better visual */
+  background-color: rgb(185, 9, 185); 
+  padding: 12px 1.25rem; 
   margin: 1.25rem 0rem;
-  font-size: 16px; /* Font size */
-  border-radius: 8px; /* Rounded corners */
-  transition: background-color 0.3s ease; /* Add a smooth transition effect on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
+  font-size: 16px; 
+  border-radius: 8px; 
+  transition: background-color 0.3s ease; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
   align-content: center;
-  width: 30rem;
+  width: 24rem;
 }
 
 #audio:hover {
-  background-color: purple; /* Darken the background color on hover */
+  background-color: purple;
 }
 
 #audio:focus {
-  outline: none; /* Remove the default focus outline */
+  outline: none;
 }
 
 #audio:active {
-  transform: scale(0.95); /* Slightly scale down the button when it's clicked */
+  transform: scale(0.95); 
 }
 
 /* Add margin and padding to the main container */
 #resultsBox {
   display: flex;
-  flex-direction: column; /* Change to display items in a column */
+  flex-direction: column; 
   gap: 1.25rem;
   margin: 1.25rem;
   padding: 1.25rem;
   border: 1px solid #ddd;
-  background-color: black; /* Set background color to black */
+  background-color: black; 
   overflow-x: auto;
 }
 
@@ -71,24 +143,20 @@ input[type="range"] {
   gap: 1.25rem;
   overflow-x: auto;
   height: 15.5rem;
-  border: 2px solid purple; /* Set the border color to purple */
-}
-
-.song-box {
-  
+  border: 2px solid purple; 
 }
 
 /* Style the image */
 .song-box img {
   width: 100%;
-  height: 10rem; /* Adjust the image height as needed */
+  height: 10rem; 
   width: 10rem;
   object-fit: cover;
 }
 
 /* Style the song title and band name */
 .song-box .text-content {
-  flex-grow: 1; /* Allow the text to grow and occupy remaining space */
+  flex-grow: 1; 
   padding: .625rem;
   display: flex;
   flex-direction: column;
@@ -97,38 +165,10 @@ input[type="range"] {
 .song-box h3,
 .song-box p {
   margin: 0;
-  font-size: 1.25rem; /* Increase font size for better visibility */
-  color: white; /* Text color */
+  font-size: 1.25rem; 
+  color: white; 
 }
 
-/* Styling the search button */
-#searchButton {
-  background-color: rgb(185, 9, 185); /* Purple background color */
-  color: white; /* Text color */
-  padding: 12px 1.25rem; /* Add some padding for a better visual */
-  font-size: 16px; /* Font size */
-  border-radius: 8px; /* Rounded corners */
-  transition: background-color 0.3s ease; /* Add a smooth transition effect on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
-  width: 150px; /* Set the width to your desired value */
-}
 
-#searchButton:hover {
-  background-color: purple; /* Darken the background color on hover */
-}
 
-#searchButton:focus {
-  outline: none; /* Remove the default focus outline */
-}
 
-#searchButton:active {
-  transform: scale(0.95); /* Slightly scale down the button when it's clicked */
-}
-
-/* Position the search and audio buttons side by side */
-.buttons-wrapper {
-  display: flex;
-  gap: 1.25rem;
-  justify-content: center;
-  margin-top: 1.25rem;
-}

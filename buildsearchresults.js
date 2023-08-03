@@ -77,6 +77,23 @@ function createSongBox(song, index) {
     return songBox;
 }
 
+function createTrackBox(track, index) {
+    const trackBox = document.createElement('div');
+    trackBox.classList.add('song-box');
+
+    const image = document.createElement('img');
+    console.log(track.album.images[1].url);
+    image.src = track.album.images[1].url;
+    image.setAttribute('data-image-id', index);
+    trackBox.appendChild(image);
+
+    const trackTitle = document.createElement('h3');
+    trackTitle.textContent = track.name;
+    trackBox.appendChild(trackTitle);
+
+    return trackBox;
+}
+
 function displaySongGrid(songArray, containerId) {
     const container = document.getElementById(containerId);
     container.textContent = '';
@@ -84,6 +101,16 @@ function displaySongGrid(songArray, containerId) {
     songArray.forEach((song, index) => {
       const songBox = createSongBox(song, index);
       container.appendChild(songBox);
+    });
+}
+
+function displayTrackGrid(trackArray, containerId) {
+    const container = document.getElementById(containerId);
+    container.textContent = '';
+  
+    trackArray.forEach((track, index) => {
+      const trackBox = createTrackBox(track, index);
+      container.appendChild(trackBox);
     });
 }
   

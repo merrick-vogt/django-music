@@ -5,49 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobilestyle.css">
+  <scipt src="oAuth2.js" defer></scipt>
   <script src="audio.js" defer></script>
   <script src="buildsearchresults.js" defer></script>
   <script src="main.js" defer></script>
-
+  
+  
   <title>Advanced Music Search</title>
-
+  
 </head>
 <body>
+  <a id='link' href="oAuth2.html">Link Text</a>
   <!-- Top of main page with title, play bar, and search box -->
   <div class="center-wrapper">
     <!-- Title of page -->
     <h1>Do you know your music?</h1>
-    <p>Spotify scores its music with</p>
-    <ul>
-      <li><strong>danceability</strong> (how much it makes you move it)</li>
-      <li><strong>energy</strong> (how intense it is)</li>
-      <li><strong>valence</strong> (positive vibes score high, negative vibes score low)</li>
-    </ul>
+    <p id="subtitle">Spotify scores its music with</p>
+    <table class="explanation-table">
+      <tr>
+        <td><strong>Dance</strong></td>
+        <td>How much the it makes you move</td>
+      </tr>
+      <tr>
+        <td><strong>Energy</strong></td>
+        <td>How intense it is</td>
+      </tr>
+      <tr>
+        <td><strong>Valence</strong></td>
+        <td>Positive vibes score high <br>Negative vibes score low</td>
+      </tr>
+    </table>
 
     <!-- Search input button for searching by artist or song -->
-    <div>
-      <label for="searchBar">Search for Artist or Song: </label>
-      <input type="text" id="searchInput">
+    <div class="searchBox">
+      <!-- <label for="searchBar"></label> -->
+      <input type="text" id="searchInput" placeholder="Search by Song or Artist">
       <button id="searchButton">Search</button>
     </div>
 
     <div class="container mt-5">
       <div class="form-group">
-        <label for="slider1">Select the Dance score:</label>
+        <label for="slider1">Select the Dance score: <strong><span id="sliderValue1">5</span></label></strong>
         <input type="range" class="form-control-range" id="slider1" min="0" max="10" step=".1">
-        <span id="sliderValue1">5</span>
+        
       </div>
   
       <div class="form-group">
-        <label for="slider2">Select the Energy score:</label>
+        <label for="slider2">Select the Energy score: <strong></label><span id="sliderValue2">5</span></strong>
         <input type="range" class="form-control-range" id="slider2" min="0" max="10" step=".1">
-        <span id="sliderValue2">5</span>
+        
       </div>
   
       <div class="form-group">
-        <label for="slider3">Select the Valence score:</label>
+        <label for="slider3">Select the Valence score: <strong></label><span id="sliderValue3">5</span></strong>
         <input type="range" class="form-control-range" id="slider3" min="0" max="10" step=".1">
-        <span id="sliderValue3">5</span>
+        
       </div>
     </div>
 
@@ -56,7 +69,7 @@
     
   
     <!-- Create audio element with progress and pause/play button. -->
-    <audio id = "audio" controls>
+    <audio id = "audio" controls volume=".3">
       <source src="">
       Your browser does not support the audio element.
     </audio>
@@ -65,6 +78,8 @@
   
   <!-- Search Box for all containers -->
   <div id="resultsBox">
+    <h2>Search by Spotify</h2>
+    <div id="tracksContainer" class="results-container"></div>
 
     <!-- Search 1 - first container -->
     <h2>Search by Song</h2>

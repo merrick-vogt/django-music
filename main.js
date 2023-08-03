@@ -6,56 +6,98 @@ var artistsArray = [];
 
 // get Token needed for searching Spotify API
 const getToken = async () => {
+    try {
+        const result = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/x-www-form-urlencoded', 
+                'Authorization' : 'Basic ' + btoa( clientId + ':' + clientSecret)
+            },
+            body: 'grant_type=client_credentials'
+        });
+    
+        const data = await result.json();
+        return data.access_token;
 
-    const result = await fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/x-www-form-urlencoded', 
-            'Authorization' : 'Basic ' + btoa( clientId + ':' + clientSecret)
-        },
-        body: 'grant_type=client_credentials'
-    });
-
-    const data = await result.json();
-    return data.access_token;
+    } catch(error) {
+        console.error('Error:', error);
+        const selectedSongBox = document.getElementById('selectedSongBox');
+        selectedSongBox.innerHTML = `An error occured accessing Spotify's's database`;
+    
+    }
 }
 
 const searchBySong = async (token, searchInput) => {
+    try {
+        const result = await fetch(`https://api.spotify.com/v1/search?q=${searchInput}&type=track`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        })
+    
+        const data = await result.json();
+        return data;
 
-    const result = await fetch(`https://api.spotify.com/v1/search?q=${searchInput}&type=track`, {
-        method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    })
-
-    const data = await result.json();
-    console.log(data)
-    return data;
+    } catch(error) {
+        console.error('Error:', error);
+        selectedSongBox.innerHTML = `An error occured accessing Spotify's's database`;
+    
+    }
 }
 
 const getSongAudioFeatures = async (token, songId) => {
+    try {
+        const result = await fetch(`https://api.spotify.com/v1/audio-features/${songId}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+    
+        const data = await result.json();
+        return data
 
-    const result = await fetch(`https://api.spotify.com/v1/audio-features/${songId}`, {
-        method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    });
-
-    const data = await result.json();
-    console.log("Response Data:", data);
-    console.log(`danceability: ${data.danceability}`)
-    return data
+    } catch(error) {
+        console.error('Error:', error);
+        const selectedSongBox = document.getElementById('selectedSongBox');
+        selectedSongBox.innerHTML = `An error occured accessing Spotify's's database`;
+    
+    }
 
 }
 
 const getTrack = async (token, songId) => {
+    try {
+        const result = await fetch(`https://api.spotify.com/v1/tracks/${songId}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+    
+        const data = await result.json();
+        return data
+        
+    } catch(error) {
+        console.error('Error:', error);
+        const selectedSongBox = document.getElementById('selectedSongBox');
+        selectedSongBox.innerHTML = `An error occured accessing Spotify's's database`;
+    
+    }
 
-    const result = await fetch(`https://api.spotify.com/v1/tracks/${songId}`, {
-        method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    });
+}
 
-    const data = await result.json();
-    return data
-
+const searchTracks = async (token, searchInput) => {
+    try {
+        const result = await fetch(`https://api.spotify.com/v1/search?q=${searchInput}&type=track`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+    
+        const data = await result.json();
+        return data.tracks.items
+        
+    } catch(error) {
+        console.error('Error:', error);
+        const selectedSongBox = document.getElementById('selectedSongBox');
+        selectedSongBox.innerHTML = `An error occured accessing Spotify's's database`;
+    
+    }
 }
 
 async function fetchiTunesData(searchInput) {
@@ -91,6 +133,8 @@ async function fetchiTunesData(searchInput) {
 
     } catch (error) {
     console.error('Error:', error);
+    const selectedSongBox = document.getElementById('selectedSongBox');
+    selectedSongBox.innerHTML = `An error occured accessing Itunes's database`;
     }
 }
 
@@ -101,13 +145,13 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Initial value display
     sliders.forEach((slider, index) => {
-      sliderValues[index].textContent = slider.value;
+      sliderValues[index].innerHTML = `  ${slider.value}`;
     });
   
     // Update value display on slider change
     sliders.forEach((slider, index) => {
       slider.addEventListener('input', function() {
-        sliderValues[index].textContent = slider.value;
+        sliderValues[index].innerHTML = ` ${slider.value}`;
       });
     });
   });
@@ -115,6 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('resultsBox').addEventListener('click', function(event) {
     if (event.target.nodeName === 'IMG') { 
+
+        const audioElement = document.getElementById('audio');
+        audioElement.volume = .3; // Set the initial volume to 0.3 (30%)
         
         const imageId = event.target.getAttribute('data-image-id');
         const clickedSong = artistsArray[imageId];
@@ -124,19 +171,34 @@ document.getElementById('resultsBox').addEventListener('click', function(event) 
 })
 
 document.getElementById('searchButton').addEventListener('click', () => {
-    const usernameInput = document.getElementById('searchInput');
-    const search = usernameInput.value.trim();
+    const searchInput = document.getElementById('searchInput');
+    const search = searchInput.value.trim();
     
     if (search) {
         (async () => {
             try {
+
                 const token = await getToken();
                 const searchResult = await searchBySong(token, search);
-                const songAudioFeatures = await getSongAudioFeatures(token, searchResult.tracks.items[0].id);
-                const track = await getTrack(token, searchResult.tracks.items[0].id)
-                console.log(track);
-                fetchiTunesData(search);
-                buildSelectedSongBox(songAudioFeatures, track);
+             
+                if (searchResult.tracks.items.length !== 0) {
+                    const songAudioFeatures = await getSongAudioFeatures(token, searchResult.tracks.items[0].id);
+                    const track = await getTrack(token, searchResult.tracks.items[0].id)
+                
+                    // fetchiTunesData(search);
+
+
+                    buildSelectedSongBox(songAudioFeatures, track);
+                    const tracksArray = await searchTracks(token, search);
+                    console.log(tracksArray)
+                    displayTrackGrid(tracksArray, 'tracksContainer');
+
+
+                } else {
+                    const selectedSongBox = document.getElementById('selectedSongBox');
+                    selectedSongBox.innerHTML = `No Search Results. Please try again.`;
+                    
+                }
 
             } catch (error) {
                 console.error('Error:', error);
