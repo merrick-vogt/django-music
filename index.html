@@ -6,14 +6,11 @@
   
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobilestyle.css">
-  <!-- Move jQuery loading above your other scripts -->
   <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="audio.js" defer></script>
   <script src="buildsearchresults.js" defer></script>
   <script src="main.js" defer></script>
 
-  
-  
   <title>Advanced Music Search</title>
   
 </head>
@@ -216,6 +213,10 @@
   
   <!-- Search Box for all containers -->
   <div id="resultsBox">
+    <!-- Search 2 - second container -->
+    <h2>Song Preview by Itunes</h2>
+    <div id="songsContainer" class="results-container">
+
     <h2>Search by Spotify</h2>
     <div id="tracksContainer" class="results-container"></div>
 
@@ -223,9 +224,6 @@
     <h2>Search by Song</h2>
     <div id="artistsContainer" class="results-container"></div>
 
-    <!-- Search 2 - second container -->
-    <h2>Search by Artist</h2>
-    <div id="songsContainer" class="results-container">
     </div>
   </div>
 
