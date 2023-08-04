@@ -41,7 +41,7 @@ function buildSelectedSongBox(songAudioFeatures, track) {
     trackName.innerHTML = `<strong>${track.name}</strong> by ${track.artists[0].name}`;
     songSelectedBox.appendChild(trackName)
 
-    
+
     
 }
 
@@ -93,6 +93,10 @@ function createTrackBox(track, index) {
     trackTitle.textContent = track.name;
     trackBox.appendChild(trackTitle);
 
+    // const dance = document.createElement('p');
+    // dance.textContent = track
+
+
     return trackBox;
 }
 
@@ -113,6 +117,7 @@ function displayTrackGrid(trackArray, containerId) {
     trackArray.forEach((track, index) => {
       const trackBox = createTrackBox(track, index);
       container.appendChild(trackBox);
+
     });
 }
   

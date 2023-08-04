@@ -181,19 +181,31 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
                 const token = await getToken();
                 const searchResult = await searchBySong(token, search);
+                
              
                 if (searchResult.tracks.items.length !== 0) {
                     const songAudioFeatures = await getSongAudioFeatures(token, searchResult.tracks.items[0].id);
+                    
+                    
                     const track = await getTrack(token, searchResult.tracks.items[0].id)
-                    console.log
+                    
                     fetchiTunesData(search);
 
 
                     buildSelectedSongBox(songAudioFeatures, track);
                     const tracksArray = await searchTracks(token, search);
                     console.log(tracksArray);
-                    displayTrackGrid(tracksArray, 'tracksContainer');
+                    
 
+                    const songAudioFeaturesArray = [];
+
+                    for (let item of tracksArray) {
+                      const songAudioFeatures = await getSongAudioFeatures(token, item.id);
+                      songAudioFeaturesArray.push(songAudioFeatures);
+                    }
+
+                    console.log(songAudioFeaturesArray)
+                    displayTrackGrid(tracksArray, 'tracksContainer');
 
                 } else {
                     const selectedSongBox = document.getElementById('selectedSongBox');
