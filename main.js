@@ -128,6 +128,7 @@ async function fetchiTunesData(searchInput) {
     songsArray = getSongsFromJson(songJsonData);
 
     // displaySongGrid(artistsArray, 'artistsContainer');
+    // console.log(songsArray);
     displaySongGrid(songsArray, 'songsContainer');
 
 
@@ -184,13 +185,13 @@ document.getElementById('searchButton').addEventListener('click', () => {
                 if (searchResult.tracks.items.length !== 0) {
                     const songAudioFeatures = await getSongAudioFeatures(token, searchResult.tracks.items[0].id);
                     const track = await getTrack(token, searchResult.tracks.items[0].id)
-                
+                    console.log
                     fetchiTunesData(search);
 
 
                     buildSelectedSongBox(songAudioFeatures, track);
                     const tracksArray = await searchTracks(token, search);
-                    console.log(tracksArray)
+                    console.log(tracksArray);
                     displayTrackGrid(tracksArray, 'tracksContainer');
 
 

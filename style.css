@@ -1,9 +1,30 @@
-/* Apply a background and font to the entire page */
-#link {
+/* Style the login button */
+#login-button {
+  background-color: #1DB954; /* Spotify Green */
   color: white;
-  font-size: 3rem;
+  padding: 14px 24px; /* Slightly larger than default */
+  font-size: 1.1rem; /* Slightly larger than default */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+#login-button:hover {
+  background-color: #159a43; /* Slightly darker green when hovered */
+  transform: scale(1.05); /* Slightly larger when hovered */
+}
+
+#login-button:focus {
+  outline: none;
+}
+
+#login-button:active {
+  transform: scale(0.95); /* Slightly smaller when clicked */
+}
+
+/* Apply a background and font to the entire page */
 body {
   background-color: black;
   font-family: Arial, sans-serif;

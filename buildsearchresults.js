@@ -8,10 +8,6 @@ function buildSelectedSongBox(songAudioFeatures, track) {
     
     const songSelectedBox = document.getElementById('selectedSongBox')
     songSelectedBox.innerHTML='';
-
-    const trackName = document.createElement('p');
-    trackName.innerHTML = `<strong>${track.name}</strong> by ${track.artists[0].name}`;
-    songSelectedBox.appendChild(trackName)
     
     const dance = document.createElement('p');
     
@@ -30,17 +26,23 @@ function buildSelectedSongBox(songAudioFeatures, track) {
     valence.innerHTML = `Spotify <strong>Valence</strong> Rating: ${valenceScore}`
     songSelectedBox.appendChild(valence)
     
+    
     const total = document.createElement('p');
     const userDanceScore = document.getElementById('slider1').value
     const userEnergyScore = document.getElementById('slider2').value
     const userValenceScore = document.getElementById('slider3').value
-
+    
     const missedBy = (Math.abs(userDanceScore-danceScore)+Math.abs(userEnergyScore-energyScore)+Math.abs(userValenceScore-valenceScore))/3;
     const score = Math.round(10*(10 - missedBy))/10;
     total.innerHTML = `Your score is <strong>${score}</strong> out of 10!`
     songSelectedBox.appendChild(total)
+    
+    const trackName = document.createElement('p');
+    trackName.innerHTML = `<strong>${track.name}</strong> by ${track.artists[0].name}`;
+    songSelectedBox.appendChild(trackName)
 
-
+    
+    
 }
 
 
@@ -82,7 +84,7 @@ function createTrackBox(track, index) {
     trackBox.classList.add('song-box');
 
     const image = document.createElement('img');
-    console.log(track.album.images[1].url);
+    
     image.src = track.album.images[1].url;
     image.setAttribute('data-image-id', index);
     trackBox.appendChild(image);
