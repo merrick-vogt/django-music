@@ -6,6 +6,7 @@
   
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobilestyle.css">
+  <link rel="stylesheet" href="loginInfo.css">
   <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="audio.js" defer></script>
   <script src="buildsearchresults.js" defer></script>
@@ -15,7 +16,52 @@
   
 </head>
 <body>
+
   <div class="container">
+    <div id="login">
+      <button id="login-button" class="btn btn-primary">Log in with Spotify</button>
+    </div>
+    <div id="loggedin">
+      <div class="user-profile" id="user-profile"></div>
+      <div class="oauth-info" id="oauth"></div>
+    </div>
+  </div>
+  
+  <script id="user-profile-template" type="text/x-handlebars-template">
+    <div class="media">
+      <div class="pull-left">
+        <img class="media-object" width="150" src="{{images.0.url}}" alt="Profile Image" />
+      </div>
+      <div class="media-body">
+        <h2>Logged in as {{display_name}}</h2>
+        <dl>
+          <dt>Display name</dt>
+          <dd class="clearfix">{{display_name}}</dd>
+          <dt>Id</dt>
+          <dd>{{id}}</dd>
+          <dt>Email</dt>
+          <dd>{{email}}</dd>
+          <dt>Spotify URI</dt>
+          <dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+          <dt>Link</dt>
+          <dd><a href="{{href}}">{{href}}</a></dd>
+          <dt>Country</dt>
+          <dd>{{country}}</dd>
+        </dl>
+      </div>
+    </div>
+  </script>
+  
+  <script id="oauth-template" type="text/x-handlebars-template">
+    <div>
+      <h2>oAuth info</h2>
+      <dl>
+        <dt>Access token</dt>
+        <dd class="text-overflow">{{access_token}}</dd>
+      </dl>
+    </div>
+  </script>
+  <!-- <div class="container">
     <div id="login">
       <button id="login-button" class="btn btn-primary">Log in with Spotify</button>
     </div>
@@ -43,7 +89,7 @@
         </dl>
       </div>
     </div>
-  </script>
+  </script> -->
 
   <script id="oauth-template" type="text/x-handlebars-template">
     <h2>oAuth info</h2>
