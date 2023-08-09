@@ -182,16 +182,16 @@ document.getElementById('searchButton').addEventListener('click', () => {
                 const token = await getToken();
                 const searchResult = await searchBySong(token, search);
                 
-                const player = new Spotify.Player({
-                    name: 'Your Player Name',
-                    getOAuthToken: callback => {
-                      // Call the function to get the access token from your authentication flow
-                      callback(token);
-                    }
-                  });
+                // const player = new Spotify.Player({
+                //     name: 'Your Player Name',
+                //     getOAuthToken: callback => {
+                //       // Call the function to get the access token from your authentication flow
+                //       callback(token);
+                //     }
+                //   });
 
-                const playbackState = await getPlaybackState(token, player);
-                console.log('Playback State:', playbackState);
+                // const playbackState = await getPlaybackState(token, player);
+                // console.log('Playback State:', playbackState);
              
                 if (searchResult.tracks.items.length !== 0) {
                     const songAudioFeatures = await getSongAudioFeatures(token, searchResult.tracks.items[0].id);
