@@ -1,0 +1,17 @@
+{% extends "search/base.html" %}
+
+{% block content %}
+    <h2>{{ playlist.name }}</h2>
+    <ul>
+        {% for entry in combined_data %}
+        <li>
+            <strong>{{ entry.song.title }}</strong> by <strong>{{ entry.song.artist }}</strong> 
+            from <strong>{{ entry.song.album }}</strong><br>
+            Danceability: {{ entry.feature.danceability }} | 
+            Energy: {{ entry.feature.energy }} | 
+            Valence: {{ entry.feature.valence }}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'playlists:playlist_list' %}">Back to Playlists</a>
+{% endblock %}

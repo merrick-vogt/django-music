@@ -1,0 +1,39 @@
+{% extends 'search/base.html' %}
+
+{% block title %} Search Results {% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    <p>get list of songs based on search.</p>
+
+    <form action="{% url 'playlists:save_tracks' %}" method="post">
+        {% csrf_token %}
+        <ul>
+            {% for track in tracks %}
+                <li>
+                    <div>
+                        <input type="checkbox" name="selected_songs" value="{{ track.id }}" checked>
+                        <strong>{{ track.name }}</strong> by <strong>{{ track.artists.0.name }}</strong> 
+                        from <strong>{{ track.album.name }}</strong>
+                        <!-- Displaying audio features just below the name and artist -->
+                        <br> Danceability: {{ track.danceability }} | Energy: {{ track.energy }} |
+                        Valence: {{ track.valence }}
+        
+                    </div>
+
+                    <!-- Hidden fields to store track data -->
+                    <input type="hidden" name="track_{{ track.id }}_name" value="{{ track.name }}">
+                    <input type="hidden" name="track_{{ track.id }}_album" value="{{ track.album.name }}">
+                    <input type="hidden" name="track_{{ track.id }}_artist" value="{{ track.artists.0.name }}">
+                    <input type="hidden" name="track_{{ track.id }}_danceability" value="{{ track.danceability }}">
+                    <input type="hidden" name="track_{{ track.id }}_energy" value="{{ track.energy }}">
+                    <input type="hidden" name="track_{{ track.id }}_valence" value="{{ track.valence }}">
+                </li>
+            {% endfor %}
+        </ul>
+        <input type="text" name="playlist_name" placeholder="Enter playlist name">
+        <button type="submit">Save</button>
+    </form>
+    
+
+{% endblock %}

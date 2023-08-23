@@ -1,0 +1,57 @@
+<!-- index.html -->
+{% extends 'search/base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<div class="center-wrapper">
+
+    <h1>Spotify Advanced Song Search</h1>
+    <p id="subtitle">Use a general search term or select from a Spotify playlist</p>
+
+    <form action="{% url 'playlists:search_results' %}" method="get">
+        <input type="text" id= "search_query" name="query" placeholder="Search by key term">
+
+        <!-- Dropdown for Spotify playlists -->
+        <!-- <select name="playlist">
+            <option value="" disabled selected>Select a Spotify Playlist</option> -->
+            
+            <!-- list of playlists from Spotipy Fetch -->
+            <!-- {% for playlist in playlists %}
+            <option value="{{ playlist.id }}">{{ playlist.name }}</option>
+            {% endfor %}
+        </select> -->
+
+
+        <button onclick="performSearch()">Search</button>
+    </form>
+
+
+
+    <!-- For Danceability -->
+    <div class="slider-values">
+        <span class="attribute">Danceability: </span>
+        <span class="noUi-value-lower" id="danceabilityLowerValue">0</span> - 
+        <span class="noUi-value-upper" id="danceabilityUpperValue">100</span>
+    </div>
+    <div id="danceabilitySlider"></div>
+
+    <!-- For Energy -->
+    <div class="slider-values">
+        <span class="attribute">Energy: </span>
+        <span class="noUi-value-lower" id="energyLowerValue">0</span> - 
+        <span class="noUi-value-upper" id="energyUpperValue">100</span>
+    </div>
+    <div id="energySlider"></div>
+
+    <!-- For Valence -->
+    <div class="slider-values">
+        <span class="attribute">Valence: </span>
+        <span class="noUi-value-lower" id="valenceLowerValue">0</span> - 
+        <span class="noUi-value-upper" id="valenceUpperValue">100</span>
+    </div>
+    <div id="valenceSlider"></div>
+
+
+{% endblock %}

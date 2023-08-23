@@ -1,0 +1,15 @@
+{% extends 'search/base.html' %}
+
+{% block title %} Playlist List {% endblock %}
+
+{% block content %}
+<h2>My Playlists</h2>
+
+<ul>
+    {% for playlist in playlists %}
+        <li>
+            <a href="{% url 'playlists:playlist_detail' playlist.id %}">{{ playlist.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

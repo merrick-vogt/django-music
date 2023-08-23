@@ -1,57 +1,168 @@
-# iTunes Search
+# Django Music Collection 🎵
 
-## Directions
+Create an application to keep track of all the music playlists you own. You can choose whatever fields you think an album should have, but it should have at least these three:
 
-For this app, we will request data from the iTunes API.
+- title
+- artist
+- created_at
 
-You'll use artist data from the API to display song titles, and then allow the user to select and play song previews. Here is an idea of what the [end result](musicapp.jpg) could look like, though you can customize the design however you like.
+The `created_at` field should reflect the time that the album object is created (not the year that the album was released, although you could certainly create a field for that too!).
 
-Here are the steps you'll need to take in order to complete this project.
+Your Django app should allow you to do the following:
 
-1. Build a form that has an `<input>` where a user can type in the name of a band or an artist.
-2. When the user types their search term and presses the submit button (or presses Enter), make the search request to the API.
-3. When the API returns a response, use the results to display a listing of songs related to the search term.
-4. When a user clicks a song in your listing, the song should play in an `<audio>` tag that you've also added to the page (see [the mockup](musicapp.jpg)).
+- See a list of all playlists on the homepage
+- Create a new album
+- See a detail page for one existing album
+- Edit an existing album
+- Delete an existing album
 
-## Product Requirements
+Your app should have at least minimal styling. It's pretty practical to use a CSS library like [Bulma](https://bulma.io/) or [Picnic](https://picnicss.com/), though you can write custom CSS if you want to. Just remember that **for this project, functionality is a higher priority than styling**.
 
-- A user can search for songs by artist or band name.
-- Validate the input so that a search request is not sent with no search term.
-- Display the search results without reloading the page.
-- The results should include song details. You must include the song title, but the data you'll get back from the API has other info you can consider including, like artist name, album title, album image, and release date.
-- The number of results you show is up to you. If no results are returned from a search, your UI should communicate this to the user in a clear way (how you do this is up to you).
-- You should handle responses from the server that are not in the 200 range in your javascript and also in your UI (for instance, you can show an error message and ask the user to repeat their search).
-- Allow the user to click on a song title to play a song preview.
-- Your application should be nicely styled, with thought given to the user experience (that is, it should be easy for your user to interact with).
+A good place to start is planning out your Album model and making sure you can make an Album object in the admin or shell. Make a couple of them. Then, you can start working on urls and views by make a homepage to list the existing playlists.
 
-### Setup with `npm`
+## URLs
 
-You'll run a development server in this project using `live-server`. Be sure to `npm install` after cloning this repo. Then run `npm start` to run your server.
+Your app should have the following URLs. You'll need to define view functions to go along with each path. Remember, one view function can handle more than one type of request!
 
-### Hints & Tips
+| path                      | verb | purpose                                               |
+| ------------------------- | ---- | ----------------------------------------------------- | 
+| `""`                      | GET  | show a list of all the playlists                         |
+| `/playlists/new`             | GET  | show a form to create a new album                     |
+| `/playlists/new`             | POST | create a new album                                    |
+| `/playlists/<int:pk>`        | GET  | show details about a single album                     |
+| `/playlists/<int:pk>/edit`   | GET  | show a form to edit a new album                       |
+| `/playlists/<int:pk>/edit`   | POST | update a specific album                               |
+| `/playlists/<int:pk>/delete` | GET  | show a confirmation screen to delete a specific album |
+| `/playlists/<int:pk>/delete` | POST | delete a specific album                               |
 
-There will be some new concepts you'll need to work through on this project, so don't hesitate to ask for assistance along the way.
+❓ Why are we using `POST` instead of `DELETE` or `PUT/PATCH` verbs for the delete and edit actions? It's because we are using web forms to send the data. [Web forms can only send `GET` or `POST` requests](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-method). We have more options with AJAX, but we haven't learned about how to use that with Django yet.
 
-- [iTunes API documentation](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Searching.html#//apple_ref/doc/uid/TP40017632-CH5-SW1)
-  - Read through the documentation before getting started. Everything you'll need to know is in there.
-  - Use Insomnia to make requests to the API to test out the URLs you will need to construct and see data that is returned.
-- Playing a song preview
-  - You'll need to research the `<audio>` tag for this part - [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
+## 🌶️ Spicy options
 
-**NOTE**: The iTunes API can be a little flaky when it comes to returning CORS headers. These headers are necessary for Ajax to work correctly. If you have any problems, you can use a proxy we've set up. Replace `https://itunes.apple.com/` in the API URL with `https://proxy-itunes-api.glitch.me/`.
+- Add an Artist model and create a foreign key on the Album model to associate the two.
+  - Show the Artist and their other playlists on the album detail page, with links to those album detail pages.
+- Create an way to mark an album as a favorite. Favorited playlists are displayed with a star next to them (how you choose to show this is up to you). A user should be able to click on the star, or a link or button, to mark the album as a favorite.
+- Show a list of all the playlists by a particular artist if a user clicks on an artist's name.
 
-One hard part will be getting the song to play. Since you will be dynamically generating the HTML for your results, adding an event listener to each result can be tricky. One way to make this easier is to put your `click` event listener on a parent node (like a `div` around the entire results section) and then get the item that the user click by getting the `event.target` in your event listener callback. This is called "event delegation"; here is a comprehensive [article on the technique](https://davidwalsh.name/event-delegate).
+## Getting up and running
 
-### 🌶️ Spicy Options
+In your project directory, get a new Django project set up. Don't forget the `.` at the end of the command to `startproject`!
 
-- Add a radio button or a drop down menu to switch the search between artist, song title, or album title.
-- Style your site so that it looks good on mobile screens as well as the desktop.
-- Create a way to toggle light/dark modes on your site. Allow your user to save their preferences by using [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API).
-- Deploy your site using [GitHub Pages! 🚀](https://docs.github.com/en/pages)
-  Publishing your project site using GitHub pages is pretty straightforward:
-  - Make sure you have an `index.html` file at the root of your project.
-  - Push your code to GitHub.
-  - Go to the settings tab for your repository on GitHub.
-    - Under the "Code & Automation" heading in the sidebar, click on **Pages**.
-    - Select a source for your GitHub Pages site: from the dropdown menu where it says "None", select the `main` branch. Click **Save**.
-  - A blue box will show up with the URL for your now live site!
+```
+> pipenv install django
+> pipenv shell
+> django-admin startproject django_music .
+```
+
+After you run this, your directory structure should look like this:
+
+```sh
+.
+├── .gitignore
+├── Pipfile
+├── Pipfile.lock
+├── README.md
+├── django_music
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+└── manage.py
+
+1 directory, 10 files
+```
+
+To generate an app in your django_music project (so that you have something analogous to `contacts` in the Uptact assignment), you want to run the following (where <name_of_app> is a name you can choose) in your repo:
+
+`django-admin startapp <name_of_app>`
+
+If you want to name your app "playlists", then you would run:
+
+```sh
+django-admin startapp playlists
+```
+
+and your directory structure would look like:
+
+```
+.
+├── .gitignore
+├── Pipfile
+├── Pipfile.lock
+├── README.md
+├── playlists
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── django_music
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+└── manage.py
+
+3 directories, 17 files
+```
+
+Once you have your app set up, be sure to add it to the `INSTALLED_APPS` list in `settings.py`.
+
+- A `.gitignore` file is provided.
+- [pipenv](https://pipenv.pypa.io/en/latest/) is used to manage dependencies.
+
+## Optional packages, why you would want them, and how to install them
+
+Uptact has some extensions installed that provide some useful features. You might like to have them installed too!
+
+🦋 It can be tricky to get these installed, but don't be afraid to try. Let an instructor know if things go sideways and you need some help!
+
+#### **[django-extensions](https://django-extensions.readthedocs.io/en/latest/)**
+
+**Why**: This package gives you some extra commands (extensions of the basic functionality of django) that can be super useful. Some examples:
+
+- `shell_plus` gives you a super-charged shell, so you don't have to manually import every model that you want to work with in the shell.
+- `show_urls` shows you all the urls you have defined
+- `list_model_info` shows you the fields and methods for your models
+- and a TON more. Check out [the docs](https://django-extensions.readthedocs.io/en/latest/index.html).
+
+**To Install:**
+
+```sh
+pipenv install django-extensions
+```
+
+Then [follow the instructions here](https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration) to add it to your `INSTALLED_APPS`.
+
+#### **[django-debug-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/)**
+
+**Why**: Extra information about each request and data when you load a page in the browser. Can really help you out when you are debugging.
+
+Check out [this video](https://www.youtube.com/watch?v=H-vLUoXKKIs) to see what it can do.
+
+**To Install:**
+
+```sh
+pipenv install django-debug-toolbar
+```
+
+Then, [follow the instructions here](https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#prerequisites) to add it to your `INSTALLED_APPS`.
+
+#### **[django-environ](https://django-environ.readthedocs.io/en/latest/)**
+
+**Why**: This allows you to have a `.env` file to store all your secret keys and environment variables following best practices (see [The 12-Factor App](https://12factor.net/config) if you want a deep dive!) and easily use those values in your `settings.py`.
+
+**To Install:**
+
+```py
+pipenv install django-environ
+```
+
+Then [follow the instructions here](https://django-environ.readthedocs.io/en/latest/#installation) AFTER the step to pip install. Remember, we are using `pipenv` to install packages, not `pip`!
+
+You will need to create a new `.env` file and put it inside your project directory, and add your secret variables to this follow (see the example in the docs at the link above). Then you can change the values for those variables in `settings.py` to use the `.env` file. Again, the documentation will show you how.

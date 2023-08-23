@@ -1,0 +1,44 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.75); /* Adjust the last value (alpha) to your preference */
+}
+
+
+.noUi-value.noUi-value-horizontal {
+    transform: none;  /* Reset any transformations */
+}
+
+.noUi-handle {
+    background: var(--spotify-green);
+    border: 0;
+    box-shadow: none;
+}
+
+.noUi-connect {
+    background: var(--spotify-green);
+}
+
+.noUi-target {
+    margin: 10px 0;
+}
+
+.slider-values {
+    margin-top: 20px;  /* Adjust this value as needed */
+    text-align: center;
+}
+
+.slider-values .attribute {
+    font-weight: bold;
+}
+
+
+/* Adjustments for the first value */
+.noUi-value.noUi-value-horizontal.noUi-value-lower {
+    margin-left: -10px;  /* Adjust the value as needed */
+    /* top: 30px;  Adjust the value to vertically align the text */
+}
+
+/* Adjustments for the second value */
+.noUi-value.noUi-value-horizontal.noUi-value-upper {
+    margin-right: -10px;  /* Adjust the value as needed */
+    /* top: 30px;  Adjust the value to vertically align the text */
+}
